@@ -1,0 +1,84 @@
+<nav class="navbar navbar-succes bg-info">
+    <div class="container">
+        <a class="navbar-brand text-dark">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+        <form class="form-inline">
+            <div class="input-group">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</nav>
+
+
+
+<div class="container mt-5 w-50">
+    <div class="card">
+        <h3 class="card-header justify-content-center text-primary"> HOBBY SELECT APP</h3>
+        <div class="card-body">
+            <h5 class="card-title justify-content-center text-success"> Add new hobby</h5>
+            <div class="input-group">
+                <input class="form-control" type="text" #newHobby name="" id="inp">
+                <button class="btn btn-success" (click)="addNewHobby(newHobby.value)">Save</button>
+            </div>
+
+            <table class="table table-striped table-bordered mt-5">
+                <thead>
+                    <tr>
+                        <th>Nm.</th>
+                        <th>Hobbies</th>
+                        <th>Statu</th>
+                        <th>Like/Unlike</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item of getHobby(); let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{item.hobbyName}}</td>
+                        <td><input type="checkbox" [(ngModel)]="item.hobbyStatu"></td>
+                        <td [ngSwitch]="item.hobbyStatu">
+                            <span *ngSwitchCase="1" class="text-danger"> UnLike</span>
+                            <span *ngSwitchCase="0" class="text-success"> Like</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <div class="input-group mb-3">
+
+                <div class="alert alert-success" *ngFor="let item of likedHobbi(); let i=index" role="alert">
+                    <span>  &nbsp;{{item.hobbyName}} &nbsp;    </span>
+                </div>
+                <div class="alert alert-danger" *ngFor="let item of unLikedHobbi(); let i=index" role="alert">
+                    <span>  &nbsp; {{item.hobbyName}} &nbsp;  </span>
+                </div>
+
+                <div class="input-group">
+                    <button class="btn btn-outline-success btn-sm w-50" (click)="displayAllHobbies()">VIEW ALL HOBBIES</button>
+                    <button class="btn btn-outline-danger btn-sm w-50" (click)="hideAllHobbies()">HIDE ALL HOBBIES</button>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
